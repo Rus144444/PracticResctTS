@@ -36,7 +36,7 @@ export function App() {
       {tracks === null && <span>Loading...</span>}
       {tracks?.length === 0 && <span>No tracks</span>}
       <ul>
-        {tracks.map((track) => {
+        {tracks?.map((track) => {
           return (
             <li>
               <div>{track.title}</div>
