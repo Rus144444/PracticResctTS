@@ -1,37 +1,24 @@
 import { useState, useEffect } from "react"
-
-type Track = {
-  id: number
-  title: string
+import { getTrack } from "./DAL/api-fake"
+ 
+type Attachment = {
   url: string
 }
- 
+
+type Track = {
+  id: string
+  attributes: {
+    title: string
+    attachments: Attachment[]
+  }
+}
 export function App() {
-  const [tracks, setTracks] = useState<Track[] | null>(null)
+  const [tracks, setTracks] = useState <Track [] | null>(null)
 
   useEffect(() => {
-    setTimeout(()=> {
-    setTracks([{
-      id: 1,
-      title: "Musicfun soundtrack",
-      url: "https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3",
-    },
-    {
-      id: 2,
-      title: "Musicfun soundtrack instrumental",
-      url: "https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3",
-    },
-    {
-      id: 3,
-      title: "Musicfun soundtrack instrumental",
-      url: "https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3",
-    },
-    {
-      id: 4,
-      title: "Musicfun soundtrack instrumental",
-      url: "https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3",
-    },
-    ])
+    setTimeout( async()=> {
+      const respons = await getTrack()
+    setTracks(respons.data)
   }, 3000)
   },[])
 
@@ -44,10 +31,10 @@ export function App() {
         {tracks?.map((track) => {
           return (
             <li key={track.id}>
-              <div>{track.title}</div>
+              <div>{track.attributes.title}</div>
               <audio
                 controls
-                src={track.url}
+                src={track.attributes.attachments[0]?.url}
               ></audio>
             </li>
           )
