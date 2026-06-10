@@ -1,19 +1,23 @@
-import { useState } from "react"
-
 export function App() {
-  console.log("App rendering")
-  const [count, setCount] = useState(10)
- 
-  const handleClick = () => {
-    setCount(count + 1)
-  }
- 
   return (
     <>
-      <h1>Vite + React {count}</h1>
-      <div className="card">
-        <button onClick={handleClick}>count is {count}</button>
-      </div>
+      <h1>Musicfun Player</h1>
+      <ul>
+        <li>
+          <div>Musicfun soundtrack</div>
+          <audio
+            controls
+            src="https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3"
+          ></audio>
+        </li>
+        <li>
+          <div>Musicfun soundtrack instrumental</div>
+          <audio
+            controls
+            src="https://musicfun.it-incubator.app/api/samurai-way-soundtrack-instrumental.mp3"
+          ></audio>
+        </li>
+      </ul>
     </>
   )
 }
