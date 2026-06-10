@@ -1,22 +1,38 @@
+const tracks = [
+  {
+    title: "Musicfun soundtrack",
+    url: "https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3",
+  },
+  {
+    title: "Musicfun soundtrack instrumental",
+    url: "https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3",
+  },
+  {
+    title: "Musicfun soundtrack instrumental",
+    url: "https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3",
+  },
+  {
+    title: "Musicfun soundtrack instrumental",
+    url: "https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3",
+  },
+]
+ 
 export function App() {
   return (
     <>
       <h1>Musicfun Player</h1>
       <ul>
-        <li>
-          <div>Musicfun soundtrack</div>
-          <audio
-            controls
-            src="https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3"
-          ></audio>
-        </li>
-        <li>
-          <div>Musicfun soundtrack instrumental</div>
-          <audio
-            controls
-            src="https://musicfun.it-incubator.app/api/samurai-way-soundtrack-instrumental.mp3"
-          ></audio>
-        </li>
+        {tracks.map((track) => {
+          return (
+            <li>
+              <div>{track.title}</div>
+              <audio
+                controls //controls={true}
+                src={track.url}
+              ></audio>
+            </li>
+          )
+        })}
       </ul>
     </>
   )
