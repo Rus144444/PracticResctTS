@@ -5,12 +5,14 @@ type Attachment = {
   url: string
 }
 
+type TrackAttributes = {
+  title: string
+  attachments: Attachment[]
+}
+
 type Track = {
   id: string
-  attributes: {
-    title: string
-    attachments: Attachment[]
-  }
+  attributes: TrackAttributes
 }
 export function App() {
   const [tracks, setTracks] = useState <Track [] | null>(null)
