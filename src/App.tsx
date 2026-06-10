@@ -7,7 +7,7 @@ type Track = {
 }
  
 export function App() {
-  const [tracks] = useState <Track[]>([
+  const [tracks] = useState<Track[] | null>([
   {
       id: 1,
       title: "Musicfun soundtrack",
@@ -33,6 +33,8 @@ export function App() {
   return (
     <>
       <h1>Musicfun Player</h1>
+      {tracks === null && <span>Loading...</span>}
+      {tracks?.length === 0 && <span>No tracks</span>}
       <ul>
         {tracks.map((track) => {
           return (
