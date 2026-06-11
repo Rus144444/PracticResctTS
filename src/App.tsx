@@ -1,30 +1,26 @@
 import { useState, useEffect, type CSSProperties } from "react"
-import { getTrack } from "./DAL/api-fake"
- 
-type Attachment = {
-  url: string
-}
-
-type TrackAttributes = {
-  title: string
-  attachments: Attachment[]
-}
-
-type Track = {
-  id: string
-  attributes: TrackAttributes
-}
+import {  getTracks, getTrack, type Track, type TrackDetailsResourse } from "./DAL/api-fake"
 export function App() {
   const [tracks, setTracks] = useState <Track [] | null>(null)
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
+  const [selectedTrack, setSelectedTrack] = useState<TrackDetailsResourse | null>(null)
+
 
   useEffect(() => {
     setTimeout( async()=> {
-      const respons = await getTrack()
+      const respons = await getTracks()
     setTracks(respons.data)
   }, 3000)
   },[])
 
+  const handleSelectTrack = async (trackId: string) => {
+    setSelectedTrackId(trackId)
+    setSelectedTrack(null)
+
+    const response = await getTrack()
+    setSelectedTrack(response.data)
+  }
+  
   return (
     <>
       <h1>Musicfun Player</h1>
@@ -38,7 +34,7 @@ export function App() {
             style.border = "1px solid orange"
           }
           return (
-            <li key={track.id} onClick={() => setSelectedTrackId(track.id)} style={style}>
+            <li key={track.id} onClick={() => handleSelectTrack(track.id)} style={style}>
               <div>{track.attributes.title}</div>
               <audio
                 controls
@@ -48,6 +44,18 @@ export function App() {
           )
         })}
       </ul>
+
+       <hr />
+      <h2>Track Details</h2>
+      {!selectedTrackId && <span>No selected track</span>}
+      {selectedTrackId && !selectedTrack && <span>Loading...</span>}
+      {selectedTrack && (
+        <div>
+          <h4>{selectedTrack.attributes.title}</h4>
+          <p>{selectedTrack.attributes.lyrics}</p>
+        </div>
+      )}
+      {/* {selectedTrack && selectedTrack.id !== selectedTrackId && <span>Loading...</span>} */}
     </>
   )
 }
