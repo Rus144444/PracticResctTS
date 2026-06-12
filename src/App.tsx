@@ -1,5 +1,7 @@
 import { useState, useEffect, type CSSProperties } from "react"
-import {  getTracks, getTrack, type Track, type TrackDetailsResourse } from "./DAL/api-fake"
+import { getTracks, getTrack, type Track, type TrackDetailsResourse } from "./DAL/api-fake"
+import { MainPage } from "./MainPage/MainPage"
+
 export function App() {
   const [tracks, setTracks] = useState <Track [] | null>(null)
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
@@ -7,13 +9,13 @@ export function App() {
 
 
   useEffect(() => {
-    setTimeout( async()=> {
+    setTimeout( async () => {
       const respons = await getTracks()
-    setTracks(respons.data)
+    setTracks ( respons.data )
   }, 3000)
   },[])
 
-  const handleSelectTrack = async (trackId: string) => {
+  const handleSelectTrack  = async (trackId: string): Promise<void> => {
     setSelectedTrackId(trackId)
     setSelectedTrack(null)
 
@@ -23,6 +25,7 @@ export function App() {
   
   return (
     <>
+      <MainPage />
       <h1>Musicfun Player</h1>
       {tracks === null && <div>Loading...</div>}
       {tracks?.length === 0 && <div>No tracks</div>}
