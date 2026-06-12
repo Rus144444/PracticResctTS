@@ -22,11 +22,10 @@ export function MainPage () {
 
     return (
         <div>
-            <PageTitle title="Musicfun Player"/>
-            <Playlist selectedTrackId={selectedTrackId} handleSelectTrack={handleSelectTrack}/>
+            <PageTitle title={"Musicfun Player"}/>
+            <Playlist selectedTrackId={selectedTrackId} onTrackSelect={handleSelectTrack}/>
             <hr />
             <TrackDetails selectedTrack={selectedTrack} selectedTrackId={selectedTrackId}/>
-            {/* {selectedTrack && selectedTrack.id !== selectedTrackId && <span>Loading...</span>} */}
         </div>
     )
 }

@@ -4,12 +4,12 @@ import {type Track, getTracks } from "../../DAL/api-fake"
 
 type Props = {
     selectedTrackId: string | null
-    handleSelectTrack: (trackId: string) => void
+    onTrackSelect: (trackId: string) => void
 }
 
 
 
-export function Playlist ({ selectedTrackId, handleSelectTrack}: Props) {
+export function Playlist ({ selectedTrackId, onTrackSelect}: Props) {
     const [tracks, setTracks] = useState <Track [] | null>(null)
 
     useEffect(() => {
@@ -29,7 +29,7 @@ export function Playlist ({ selectedTrackId, handleSelectTrack}: Props) {
             style.border = "1px solid orange"
           }
           return (
-            <li key={track.id} onClick={() => handleSelectTrack(track.id)} style={style}>
+            <li key={track.id} onClick={() => onTrackSelect(track.id)} style={style}>
               <div>{track.attributes.title}</div>
               <audio
                 controls
