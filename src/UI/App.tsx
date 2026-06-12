@@ -1,5 +1,5 @@
 import { useState, useEffect, type CSSProperties } from "react"
-import { getTracks, getTrack, type Track, type TrackDetailsResourse } from "./DAL/api-fake"
+import { getTracks, getTrack, type Track, type TrackDetailsResourse } from "../DAL/api-fake"
 import { MainPage } from "./MainPage/MainPage"
 
 export function App() {
