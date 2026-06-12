@@ -7,9 +7,7 @@ type Props = {
     onTrackSelect: (trackId: string) => void
 }
 
-
-
-export function Playlist ({ selectedTrackId, onTrackSelect}: Props) {
+function usePlaylist () {
     const [tracks, setTracks] = useState <Track [] | null>(null)
 
     useEffect(() => {
@@ -18,6 +16,15 @@ export function Playlist ({ selectedTrackId, onTrackSelect}: Props) {
         setTracks ( respons.data )
     }, 3000)
     },[])
+
+    return {
+        tracks
+    }
+}
+
+
+export function Playlist ({ selectedTrackId, onTrackSelect}: Props) {
+    const {tracks} = usePlaylist()
     return <div>
         {tracks === null && <div>Loading...</div>}
         {tracks?.length === 0 && <div>No tracks</div>}

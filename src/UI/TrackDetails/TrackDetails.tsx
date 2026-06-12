@@ -1,18 +1,50 @@
-import {type TrackDetailsResourse} from "../../DAL/api-fake"
+import { useEffect, useState } from "react"
+import { getTrack, type TrackDetailsResourse } from "../../DAL/api-fake"
 
 type Props = {
-    selectedTrack: TrackDetailsResourse | null
-    selectedTrackId: string | null
+  selectedTrackId: string | null
 }
 
-export function TrackDetails ({selectedTrack, selectedTrackId}: Props) {
-    return <div><h2>Track Details</h2>
+function useTrackDetails (id: string | null) {
+  const [selectedTrack, setSelectedTrack] = useState<TrackDetailsResourse | null>(null)
+
+  useEffect(() => {
+    
+    if (!id) {
+      setSelectedTrack(null)
+      return
+    }
+
+    setSelectedTrack(null)
+
+    getTrack().then((response) => {
+      setSelectedTrack(response.data)
+    })
+  }, [id])
+
+  return {
+  selectedTrack,
+  }
+}
+
+export function TrackDetails({ selectedTrackId }: Props) {
+  const {selectedTrack} = useTrackDetails(selectedTrackId)
+  return (
+    <div>
+      <h2>Track Details</h2>
+
       {!selectedTrackId && <span>No selected track</span>}
-      {selectedTrackId && !selectedTrack && <span>Loading...</span>}
+
+      {selectedTrackId && !selectedTrack && (
+        <span>Loading...</span>
+      )}
+
       {selectedTrack && (
         <div>
           <h4>{selectedTrack.attributes.title}</h4>
           <p>{selectedTrack.attributes.lyrics}</p>
         </div>
-      )}</div>
+      )}
+    </div>
+  )
 }
