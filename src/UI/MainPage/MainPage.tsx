@@ -1,20 +1,7 @@
-import { useState} from "react"
 import {PageTitle} from "../PageTitle/PageTitle"
 import { Playlist } from "../Playlist/Playlist"
 import { TrackDetails } from "../TrackDetails/TrackDetails"
-
-function useMainPage () {
-   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
-
-    const handleSelectTrack = (trackId: string) => {
-        setSelectedTrackId(trackId)
-    }
-
-    return {
-        selectedTrackId,
-        handleSelectTrack
-    }
-}
+import { useMainPage } from "../../BLL/useMainPage"
 
 export function MainPage () {
     const {selectedTrackId,  handleSelectTrack,  } = useMainPage()

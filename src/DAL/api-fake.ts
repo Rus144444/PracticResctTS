@@ -1,34 +1,33 @@
-export type TrackAttributes = {
+type TrackAttributes = {
   title: string
   attachments: Attachment[]
 }
 
-
-export type Track = {
+type Track = {
   id: string
   attributes: TrackAttributes
 }
 
-export type Attachment = {
+type Attachment = {
   url: string
 }
 
-export type TrackDetailsAttributes = {
+type TrackDetailsAttributes = {
   title: string
   lyrics: string
   attachments: Attachment[]
 }
 
-export type TrackDetailsResourse = {
+type TrackDetailsResourse = {
   id: string
   attributes: TrackDetailsAttributes
 }
 
-export type GetTrackResponse = {
+type GetTrackResponse = {
   data: TrackDetailsResourse
 }
 
-export type GetTracksResponse = {
+type GetTracksResponse = {
   data: Track[]
 }
 

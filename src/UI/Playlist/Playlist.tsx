@@ -1,26 +1,13 @@
-import { useEffect, useState } from "react"
 import { type CSSProperties } from "react"
-import {type Track, getTracks } from "../../DAL/api-fake"
+import { usePlaylist } from "../../BLL/usePlaylist"
+
 
 type Props = {
     selectedTrackId: string | null
     onTrackSelect: (trackId: string) => void
 }
 
-function usePlaylist () {
-    const [tracks, setTracks] = useState <Track [] | null>(null)
 
-    useEffect(() => {
-        setTimeout( async () => {
-        const respons = await getTracks()
-        setTracks ( respons.data )
-    }, 3000)
-    },[])
-
-    return {
-        tracks
-    }
-}
 
 
 export function Playlist ({ selectedTrackId, onTrackSelect}: Props) {

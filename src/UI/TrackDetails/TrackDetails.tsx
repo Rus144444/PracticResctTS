@@ -1,30 +1,7 @@
-import { useEffect, useState } from "react"
-import { getTrack, type TrackDetailsResourse } from "../../DAL/api-fake"
+import { useTrackDetails } from "../../BLL/useTrackDetails"
 
 type Props = {
   selectedTrackId: string | null
-}
-
-function useTrackDetails (id: string | null) {
-  const [selectedTrack, setSelectedTrack] = useState<TrackDetailsResourse | null>(null)
-
-  useEffect(() => {
-    
-    if (!id) {
-      setSelectedTrack(null)
-      return
-    }
-
-    setSelectedTrack(null)
-
-    getTrack().then((response) => {
-      setSelectedTrack(response.data)
-    })
-  }, [id])
-
-  return {
-  selectedTrack,
-  }
 }
 
 export function TrackDetails({ selectedTrackId }: Props) {
