@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react"
 import { getTracks } from "../DAL/api-fake"
 
-type Track = {
+export type Track = {
   id: string
   attributes: TrackAttributes
 }
 
-type TrackAttributes = {
+export type TrackAttributes = {
   title: string
   attachments: Attachment[]
 }
 
-type Attachment = {
+export type Attachment = {
   url: string
 }
 
