@@ -1,6 +1,5 @@
 import {type Track } from "../../BLL/usePlaylist"
-import { type CSSProperties } from "react"
-
+import style from "./TrackItem.module.css"
 
 type Props = {
     track: Track
@@ -9,13 +8,9 @@ type Props = {
 }
 
 export function TrackItem ({track, onTrackSelect, isSelected}: Props) {
-    const style: CSSProperties = {}
-    
-          if (isSelected) {
-            style.border = "1px solid orange"
-          }
+
     return(
-        <li key={track.id} onClick={() => onTrackSelect(track.id)} style={style}>
+        <li key={track.id} onClick={() => onTrackSelect(track.id)} className={isSelected ? style.border : ""}>
             <div>{track.attributes.title}</div>
             <audio
             controls

@@ -6,10 +6,9 @@ import { useMainPage } from "../../BLL/useMainPage"
 export function MainPage () {
     const {selectedTrackId,  handleSelectTrack,  } = useMainPage()
     return (
-        <div>
+        <div >
             <PageTitle title={"Musicfun Player"}/>
-            <Playlist selectedTrackId={selectedTrackId} onTrackSelect={handleSelectTrack}/>
-            <hr />
+            <Playlist  selectedTrackId={selectedTrackId} onTrackSelect={handleSelectTrack}/>
             <TrackDetails  selectedTrackId={selectedTrackId} />
         </div>
     )
